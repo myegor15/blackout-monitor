@@ -27,8 +27,9 @@ public class DeviceSessionManager {
 
     private final Map<String, DeviceSession> agentSessionMap = new ConcurrentHashMap<>();
 
-    public void connect(String deviceSerialNumber, WebSocketSession wsSession) {
-        MonitorDevice monitorDevice = monitorDeviceService.getBySerialNumber(deviceSerialNumber)
+    public void connect(String serialNumber, WebSocketSession wsSession) {
+        Objects.requireNonNull(serialNumber, "serialNumber cannot be null");
+        MonitorDevice monitorDevice = monitorDeviceService.getBySerialNumber(serialNumber)
                 .orElseThrow(RuntimeException::new);
         Set<Long> tgChatIds = monitorDeviceSubscriptionService.getTGChatIdSetByDeviceId(monitorDevice.getId());
         Set<Long> chatRefIds = tgChatService.getRefIdSetByTGChatIdSet(tgChatIds);

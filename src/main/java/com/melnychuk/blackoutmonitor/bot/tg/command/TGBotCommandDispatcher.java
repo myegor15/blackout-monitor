@@ -1,7 +1,6 @@
 package com.melnychuk.blackoutmonitor.bot.tg.command;
 
-import com.melnychuk.blackoutmonitor.bot.tg.command.TGBotCommand;
-import com.melnychuk.blackoutmonitor.model.TGUser;
+import com.melnychuk.blackoutmonitor.bot.tg.UserRequest;
 import org.springframework.util.Assert;
 
 import java.util.Comparator;
@@ -17,7 +16,7 @@ public class TGBotCommandDispatcher {
         this.commandList = commands
                 .stream()
                 .sorted(Comparator
-                        .comparing(UserRequestHandler::isGlobal)
+                        .comparing(TGBotCommand::isGlobal)
                         .reversed())
                 .collect(Collectors.toList());
     }
@@ -28,7 +27,7 @@ public class TGBotCommandDispatcher {
                 userRequestHandler.handle(userRequest);
                 return true;
             }
-        } new TGUser()
+        }
         return false;
     }
 }

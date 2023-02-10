@@ -1,5 +1,6 @@
 package com.melnychuk.blackoutmonitor.bot.tg.command;
 
+import com.melnychuk.blackoutmonitor.bot.tg.UserRequest;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public abstract class TGBotCommand {

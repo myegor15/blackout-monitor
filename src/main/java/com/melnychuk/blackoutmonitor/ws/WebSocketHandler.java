@@ -12,6 +12,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.Objects;
+
 @Component
 @AllArgsConstructor
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -33,6 +35,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         switch (dto.action()) {
             case CONNECT -> {
                 ConnectDTO connectDTO = (ConnectDTO) dto.payload();
+                Objects.requireNonNull(connectDTO, "Payload cannot be null.");
                 sessionManager.connect(connectDTO.serialNumber(), session);
             }
             default -> throw new RuntimeException("Unknown action: " + dto.action());
