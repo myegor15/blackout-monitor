@@ -2,9 +2,9 @@ package com.melnychuk.blackoutmonitor.dao.pg;
 
 import com.melnychuk.blackoutmonitor.dao.BaseDAO;
 import com.melnychuk.blackoutmonitor.exception.AppDAOException;
-import com.melnychuk.blackoutmonitor.util.jdbc.JdbcTemplateWrapper;
+import com.melnychuk.util.jdbc.JdbcTemplateWrapper;
+import com.melnychuk.util.jdbc.rs.RSRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.Map;
 public class PGBaseDAO<M> implements BaseDAO<M> {
 
     protected final JdbcTemplateWrapper jdbcTemplateWrapper;
-    protected final RowMapper<M> mapper;
+    protected final RSRowMapper<M> mapper;
 
-    public PGBaseDAO(JdbcTemplate jdbcTemplate, RowMapper<M> mapper) {
+    public PGBaseDAO(JdbcTemplate jdbcTemplate, RSRowMapper<M> mapper) {
         this.jdbcTemplateWrapper = new JdbcTemplateWrapper(jdbcTemplate);
         this.mapper = mapper;
     }

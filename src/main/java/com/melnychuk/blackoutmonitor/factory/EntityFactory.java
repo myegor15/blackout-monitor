@@ -1,15 +1,16 @@
 package com.melnychuk.blackoutmonitor.factory;
 
-import org.springframework.jdbc.core.RowMapper;
+import com.melnychuk.util.jdbc.rs.RSRowMapper;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public interface EntityFactory<VO, DTO> extends RowMapper<VO> {
+public interface EntityFactory<VO, DTO> extends RSRowMapper<VO> {
 
     VO createVO(DTO dto);
+
     DTO createDTO(VO vo);
 
     default List<DTO> createDTOList(List<VO> voList) {
