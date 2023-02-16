@@ -1,5 +1,5 @@
 package com.melnychuk.util.jdbc;
 
-public interface PersistenceEnumValue {
+public interface PersistenceValue {
     String getPersistenceValue();
 }

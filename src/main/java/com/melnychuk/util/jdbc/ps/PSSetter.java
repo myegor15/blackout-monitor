@@ -1,7 +1,7 @@
 package com.melnychuk.util.jdbc.ps;
 
 import com.melnychuk.blackoutmonitor.exception.AppDAOException;
-import com.melnychuk.util.jdbc.PersistenceEnumValue;
+import com.melnychuk.util.jdbc.PersistenceValue;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -144,7 +144,7 @@ public class PSSetter {
         }
     }
 
-    public PSSetter setEnum(PersistenceEnumValue value) {
+    public PSSetter setEnum(PersistenceValue value) {
         try {
             if (value == null) {
                 this.ps.setNull(this.i, Types.VARCHAR);

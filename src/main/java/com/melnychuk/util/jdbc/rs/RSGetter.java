@@ -1,13 +1,12 @@
 package com.melnychuk.util.jdbc.rs;
 
 import com.melnychuk.blackoutmonitor.exception.AppDAOException;
-import com.melnychuk.util.jdbc.PersistenceEnumValue;
+import com.melnychuk.util.jdbc.PersistenceValue;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.Arrays;
 
 public class RSGetter {
 
@@ -121,7 +120,7 @@ public class RSGetter {
         }
     }
 
-    public <T extends PersistenceEnumValue> T getEnum(String key, T[] values) {
+    public <T extends PersistenceValue> T getEnum(String key, T[] values) {
         try {
             String result = this.rs.getString(key);
             if (this.rs.wasNull()) {

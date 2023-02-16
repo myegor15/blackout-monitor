@@ -1,8 +1,8 @@
 package com.melnychuk.blackoutmonitor.model.enums;
 
-import com.melnychuk.util.jdbc.PersistenceEnumValue;
+import com.melnychuk.util.jdbc.PersistenceValue;
 
-public enum MonitorDeviceStatus implements PersistenceEnumValue {
+public enum MonitorDeviceStatus implements PersistenceValue {
 
     ONLINE("online"),
     OFFLINE("offline");
