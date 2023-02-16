@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public class PGMonitorDeviceDAO extends PGDAOAdapter<MonitorDevice> implements MonitorDeviceDAO {
+public class PGMonitorDeviceDAO extends PGBaseDAO<MonitorDevice> implements MonitorDeviceDAO {
 
     @Autowired
     public PGMonitorDeviceDAO(JdbcTemplate jdbcTemplate, MonitorDeviceFactory factory) {
