@@ -3,6 +3,6 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/blackout-monitor
+    url: jdbc:postgresql://localhost:5432/blackout_monitor
     username: postgres
     password: postgres
