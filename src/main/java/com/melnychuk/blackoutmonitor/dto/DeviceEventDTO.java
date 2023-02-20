@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class DeviceEventDTO extends DeviceEvent {
+
 }

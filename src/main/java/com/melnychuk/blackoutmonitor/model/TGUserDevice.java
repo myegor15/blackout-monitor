@@ -12,7 +12,7 @@ import java.time.Instant;
 public class TGUserDevice {
     private Long id;
     private Long tgUserId;
-    private Long monitorAgentId;
+    private Long deviceId;
     private String name;
     private Instant createDate;
 }

@@ -1,25 +1,21 @@
 package com.melnychuk.blackoutmonitor.factory;
 
 import com.melnychuk.blackoutmonitor.dto.DeviceEventDTO;
+import com.melnychuk.blackoutmonitor.factory.mapper.DeviceEventMapper;
 import com.melnychuk.blackoutmonitor.model.DeviceEvent;
 import com.melnychuk.util.jdbc.rs.RSGetter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DeviceEventFactory implements EntityFactory<DeviceEvent, DeviceEventDTO> {
+@AllArgsConstructor
+public class DeviceEventFactory extends BaseEntityFactory<DeviceEvent, DeviceEventDTO> {
 
-    @Override
-    public DeviceEvent createVO(DeviceEventDTO deviceEventDTO) {
-        return null;
-    }
-
-    @Override
-    public DeviceEventDTO createDTO(DeviceEvent deviceEvent) {
-        return null;
-    }
+    @Getter private final DeviceEventMapper mapper;
 
     @Override
     public DeviceEvent mapRow(RSGetter rsGetter) {
-        return null;
+        return new DeviceEvent();
     }
 }

@@ -11,7 +11,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class DeviceSubscription {
     private Long id;
-    private Long monitorDeviceId;
+    private Long deviceId;
     private Long tgChatId;
     private Instant createDate;
 }

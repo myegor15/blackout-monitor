@@ -1,24 +1,27 @@
 package com.melnychuk.blackoutmonitor.factory;
 
 import com.melnychuk.blackoutmonitor.dto.TGChatDTO;
+import com.melnychuk.blackoutmonitor.factory.mapper.TGChatMapper;
 import com.melnychuk.blackoutmonitor.model.TGChat;
 import com.melnychuk.util.jdbc.rs.RSGetter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TGChatFactory implements EntityFactory<TGChat, TGChatDTO> {
-    @Override
-    public TGChat createVO(TGChatDTO tgChatDTO) {
-        return null;
-    }
+@AllArgsConstructor
+public class TGChatFactory extends BaseEntityFactory<TGChat, TGChatDTO> {
 
-    @Override
-    public TGChatDTO createDTO(TGChat tgChat) {
-        return null;
-    }
+    @Getter private final TGChatMapper mapper;
 
     @Override
     public TGChat mapRow(RSGetter rsGetter) {
-        return null;
+        return new TGChat(
+                rsGetter.getLong("id"),
+                rsGetter.getLong("ref_if"),
+                rsGetter.getString("ref_name"),
+                rsGetter.getLong("tg_user_id"),
+                rsGetter.getInstant("create_date")
+        );
     }
 }

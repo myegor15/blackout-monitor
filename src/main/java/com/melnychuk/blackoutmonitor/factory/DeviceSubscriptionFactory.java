@@ -1,25 +1,26 @@
 package com.melnychuk.blackoutmonitor.factory;
 
 import com.melnychuk.blackoutmonitor.dto.DeviceSubscriptionDTO;
+import com.melnychuk.blackoutmonitor.factory.mapper.DeviceSubscriptionMapper;
 import com.melnychuk.blackoutmonitor.model.DeviceSubscription;
 import com.melnychuk.util.jdbc.rs.RSGetter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DeviceSubscriptionFactory implements EntityFactory<DeviceSubscription, DeviceSubscriptionDTO> {
+@AllArgsConstructor
+public class DeviceSubscriptionFactory extends BaseEntityFactory<DeviceSubscription, DeviceSubscriptionDTO> {
 
-    @Override
-    public DeviceSubscription createVO(DeviceSubscriptionDTO deviceSubscriptionDTO) {
-        return null;
-    }
-
-    @Override
-    public DeviceSubscriptionDTO createDTO(DeviceSubscription deviceSubscription) {
-        return null;
-    }
+    @Getter private final DeviceSubscriptionMapper mapper;
 
     @Override
     public DeviceSubscription mapRow(RSGetter rsGetter) {
-        return null;
+        return new DeviceSubscription(
+                rsGetter.getLong("id"),
+                rsGetter.getLong("device_id"),
+                rsGetter.getLong("tg_chat_id"),
+                rsGetter.getInstant("create_date")
+        );
     }
 }
