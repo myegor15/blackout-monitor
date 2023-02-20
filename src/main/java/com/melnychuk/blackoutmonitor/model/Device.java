@@ -1,5 +1,6 @@
 package com.melnychuk.blackoutmonitor.model;
 
+import com.melnychuk.blackoutmonitor.model.enums.DeviceStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,10 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MonitorDeviceSubscription {
+public class Device {
     private Long id;
-    private Long monitorDeviceId;
-    private Long tgChatId;
+    private String serialNumber;
+    private String firmwareVersion;
+    private DeviceStatus status;
     private Instant createDate;
 }

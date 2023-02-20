@@ -1,4 +1,4 @@
 package com.melnychuk.blackoutmonitor.model;
 
-public class MonitorDeviceEvent {
+public class DeviceEvent {
 }

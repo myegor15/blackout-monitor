@@ -1,7 +1,6 @@
 package com.melnychuk.blackoutmonitor.dto;
 
-import com.melnychuk.blackoutmonitor.model.TGUserMonitorDevice;
-import lombok.AllArgsConstructor;
+import com.melnychuk.blackoutmonitor.model.DeviceSubscription;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class TGUserMonitorDeviceDTO extends TGUserMonitorDevice {
+public class DeviceSubscriptionDTO extends DeviceSubscription {
 }

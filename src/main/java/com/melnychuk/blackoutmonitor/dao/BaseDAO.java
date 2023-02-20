@@ -1,14 +1,16 @@
 package com.melnychuk.blackoutmonitor.dao;
 
+import com.melnychuk.blackoutmonitor.exception.AppDAOException;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public interface BaseDAO<M> {
-    M add(M device);
-    void update(M device);
-    void delete(Long id);
-    M getById(Long id);
-    List<M> getList();
-    Map<Long, M> getMapByIds(Collection<Long> ids);
+    M add(M device) throws AppDAOException;
+    void update(M device) throws AppDAOException;
+    void delete(Long id) throws AppDAOException;
+    M getById(Long id) throws AppDAOException;
+    List<M> getList() throws AppDAOException;
+    Map<Long, M> getMapByIds(Collection<Long> ids) throws AppDAOException;
 }

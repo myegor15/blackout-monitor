@@ -1,7 +1,6 @@
 package com.melnychuk.blackoutmonitor.dto;
 
-import com.melnychuk.blackoutmonitor.model.MonitorDeviceSubscription;
-import lombok.AllArgsConstructor;
+import com.melnychuk.blackoutmonitor.model.DeviceEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class MonitorDeviceSubscriptionDTO extends MonitorDeviceSubscription {
+public class DeviceEventDTO extends DeviceEvent {
 }

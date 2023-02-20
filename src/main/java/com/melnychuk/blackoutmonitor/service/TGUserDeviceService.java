@@ -1,4 +1,4 @@
 package com.melnychuk.blackoutmonitor.service;
 
-public interface MonitorDeviceEventService {
+public interface TGUserDeviceService {
 }

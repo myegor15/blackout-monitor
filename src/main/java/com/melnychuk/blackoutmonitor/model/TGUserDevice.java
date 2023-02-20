@@ -9,7 +9,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TGUserMonitorDevice {
+public class TGUserDevice {
     private Long id;
     private Long tgUserId;
     private Long monitorAgentId;

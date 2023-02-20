@@ -1,4 +1,6 @@
 package com.melnychuk.blackoutmonitor.dao;
 
-public interface TGChatDAO {
+import com.melnychuk.blackoutmonitor.model.TGChat;
+
+public interface TGChatDAO extends BaseDAO<TGChat> {
 }

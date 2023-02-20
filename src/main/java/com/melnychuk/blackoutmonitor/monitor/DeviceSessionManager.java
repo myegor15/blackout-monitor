@@ -1,10 +1,11 @@
 package com.melnychuk.blackoutmonitor.monitor;
 
-import com.melnychuk.blackoutmonitor.model.MonitorDevice;
+import com.melnychuk.blackoutmonitor.exception.AppServiceException;
+import com.melnychuk.blackoutmonitor.model.Device;
 import com.melnychuk.blackoutmonitor.monitor.listener.ConnectListener;
 import com.melnychuk.blackoutmonitor.monitor.listener.DisconnectListener;
-import com.melnychuk.blackoutmonitor.service.MonitorDeviceService;
-import com.melnychuk.blackoutmonitor.service.MonitorDeviceSubscriptionService;
+import com.melnychuk.blackoutmonitor.service.DeviceService;
+import com.melnychuk.blackoutmonitor.service.DeviceSubscriptionService;
 import com.melnychuk.blackoutmonitor.service.TGChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DeviceSessionManager {
 
     private final TGChatService tgChatService;
-    private final MonitorDeviceService monitorDeviceService;
-    private final MonitorDeviceSubscriptionService monitorDeviceSubscriptionService;
+    private final DeviceService deviceService;
+    private final DeviceSubscriptionService deviceSubscriptionService;
 
     private final List<ConnectListener> connectListeners;
     private final List<DisconnectListener> disconnectListeners;
@@ -29,13 +30,13 @@ public class DeviceSessionManager {
 
     public void connect(String serialNumber, WebSocketSession wsSession) {
         Objects.requireNonNull(serialNumber, "serialNumber cannot be null");
-        MonitorDevice monitorDevice = monitorDeviceService.getBySerialNumber(serialNumber)
-                .orElseThrow(RuntimeException::new);
-        Set<Long> tgChatIds = monitorDeviceSubscriptionService.getTGChatIdSetByDeviceId(monitorDevice.getId());
+        Device device = Optional.ofNullable(deviceService.getBySerialNumber(serialNumber))
+                .orElseThrow(() -> new AppServiceException("Device does not exist: serialNumber=" + serialNumber));
+        Set<Long> tgChatIds = deviceSubscriptionService.getTGChatIdSetByDeviceId(device.getId());
         Set<Long> chatRefIds = tgChatService.getRefIdSetByTGChatIdSet(tgChatIds);
         DeviceSession deviceSession = DeviceSession.builder()
                 .webSocketSession(wsSession)
-                .monitorDevice(monitorDevice)
+                .device(device)
                 .connectDate(Instant.now())
                 .lastResponseDate(Instant.now())
                 .recipientTgChatIds(chatRefIds)
@@ -76,7 +77,7 @@ public class DeviceSessionManager {
     private Optional<DeviceSession> getDeviceSession(Long deviceId) {
         return this.agentSessionMap.values()
                 .stream()
-                .filter(ds -> ds.getMonitorDevice().getId().equals(deviceId))
+                .filter(ds -> ds.getDevice().getId().equals(deviceId))
                 .findFirst();
     }
 

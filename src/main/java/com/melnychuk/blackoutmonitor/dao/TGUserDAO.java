@@ -1,4 +1,6 @@
 package com.melnychuk.blackoutmonitor.dao;
 
-public interface TGUserDAO {
+import com.melnychuk.blackoutmonitor.model.TGUser;
+
+public interface TGUserDAO extends BaseDAO<TGUser> {
 }
