@@ -1,31 +1,34 @@
 package com.melnychuk.util.jdbc.rs.extractor;
 
 import com.melnychuk.util.jdbc.rs.RSGetter;
-import com.melnychuk.util.jdbc.rs.RSRowMapper;
+import com.melnychuk.util.jdbc.rs.RSMapper;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.util.Assert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
-public class MapRSExtractor<K, V> implements ResultSetExtractor<Map<K, V>> {
+public class RSMapExtractor<K, V> implements ResultSetExtractor<Map<K, V>> {
 
-    private final RSRowMapper<K> keyMapper;
-    private final RSRowMapper<V> valueMapper;
+    private final RSMapper<K> keyMapper;
+    private final RSMapper<V> valueMapper;
+    private final Supplier<Map<K, V>> mapSupplier;
 
-    public MapRSExtractor(RSRowMapper<K> keyMapper, RSRowMapper<V> valueMapper) {
+    public RSMapExtractor(RSMapper<K> keyMapper, RSMapper<V> valueMapper, Supplier<Map<K, V>> mapSupplier) {
         Assert.notNull(keyMapper, "keyMapper cannot be null");
         Assert.notNull(valueMapper, "valueMapper cannot be null");
+        Assert.notNull(mapSupplier, "mapSupplier cannot be null");
         this.keyMapper = keyMapper;
         this.valueMapper = valueMapper;
+        this.mapSupplier = mapSupplier;
     }
 
     @Override
     public Map<K, V> extractData(ResultSet rs) throws SQLException {
         RSGetter rsGetter = new RSGetter(rs);
-        Map<K, V> result = new HashMap<>();
+        Map<K, V> result = this.mapSupplier.get();
         while (rs.next()) {
             K key = this.keyMapper.mapRow(rsGetter);
             V value = this.valueMapper.mapRow(rsGetter);

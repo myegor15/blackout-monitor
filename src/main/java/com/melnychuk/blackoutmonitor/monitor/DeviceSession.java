@@ -1,6 +1,6 @@
 package com.melnychuk.blackoutmonitor.monitor;
 
-import com.melnychuk.blackoutmonitor.model.Device;
+import com.melnychuk.blackoutmonitor.dto.DeviceDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class DeviceSession {
 
     private final WebSocketSession webSocketSession;
-    private final Device device;
+    private final DeviceDTO device;
 
     private final Instant connectDate;
 

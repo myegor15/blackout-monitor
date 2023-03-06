@@ -1,5 +1,6 @@
 package com.melnychuk.blackoutmonitor.config;
 
+import com.melnychuk.util.jdbc.JdbcTemplateWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,4 +15,8 @@ public class DatabaseConfig {
         return new JdbcTemplate(dataSource, false);
     }
 
+    @Bean
+    public JdbcTemplateWrapper jdbcTemplateWrapper(JdbcTemplate jdbcTemplate) {
+        return new JdbcTemplateWrapper(jdbcTemplate);
+    }
 }

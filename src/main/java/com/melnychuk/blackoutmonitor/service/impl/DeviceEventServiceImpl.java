@@ -2,7 +2,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 
 import com.melnychuk.blackoutmonitor.dao.DeviceEventDAO;
 import com.melnychuk.blackoutmonitor.dto.DeviceEventDTO;
-import com.melnychuk.blackoutmonitor.factory.DeviceEventFactory;
+import com.melnychuk.blackoutmonitor.mapper.DeviceEventMapper;
 import com.melnychuk.blackoutmonitor.model.DeviceEvent;
 import com.melnychuk.blackoutmonitor.service.DeviceEventService;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,6 @@ import org.springframework.stereotype.Service;
 public class DeviceEventServiceImpl extends BaseServiceImpl<DeviceEvent, DeviceEventDTO> implements DeviceEventService {
 
     @Getter private final DeviceEventDAO dao;
-    @Getter private final DeviceEventFactory factory;
+    @Getter private final DeviceEventMapper mapper;
 
 }

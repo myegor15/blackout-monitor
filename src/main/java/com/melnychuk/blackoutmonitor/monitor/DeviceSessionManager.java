@@ -1,7 +1,7 @@
 package com.melnychuk.blackoutmonitor.monitor;
 
+import com.melnychuk.blackoutmonitor.dto.DeviceDTO;
 import com.melnychuk.blackoutmonitor.exception.AppServiceException;
-import com.melnychuk.blackoutmonitor.model.Device;
 import com.melnychuk.blackoutmonitor.monitor.listener.ConnectListener;
 import com.melnychuk.blackoutmonitor.monitor.listener.DisconnectListener;
 import com.melnychuk.blackoutmonitor.service.DeviceService;
@@ -30,7 +30,7 @@ public class DeviceSessionManager {
 
     public void connect(String serialNumber, WebSocketSession wsSession) {
         Objects.requireNonNull(serialNumber, "serialNumber cannot be null");
-        Device device = Optional.ofNullable(deviceService.getBySerialNumber(serialNumber))
+        DeviceDTO device = Optional.ofNullable(deviceService.getBySerialNumber(serialNumber))
                 .orElseThrow(() -> new AppServiceException("Device does not exist: serialNumber=" + serialNumber));
         Set<Long> tgChatIds = deviceSubscriptionService.getTGChatIdSetByDeviceId(device.getId());
         Set<Long> chatRefIds = tgChatService.getRefIdSetByTGChatIdSet(tgChatIds);

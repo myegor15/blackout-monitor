@@ -1,7 +1,7 @@
 package com.melnychuk.util.jdbc.rs.extractor;
 
 import com.melnychuk.util.jdbc.rs.RSGetter;
-import com.melnychuk.util.jdbc.rs.RSRowMapper;
+import com.melnychuk.util.jdbc.rs.RSMapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.util.Assert;
@@ -9,17 +9,18 @@ import org.springframework.util.Assert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ObjectRSExtractor<T> implements ResultSetExtractor<T> {
+public class RSObjectExtractor<T> implements ResultSetExtractor<T> {
 
-    private final RSRowMapper<T> rowMapper;
+    private final RSMapper<T> rsMapper;
 
-    public ObjectRSExtractor(RSRowMapper<T> rowMapper) {
-        Assert.notNull(rowMapper, "rowMapper cannot be null");
-        this.rowMapper = rowMapper;
+    public RSObjectExtractor(RSMapper<T> rsMapper) {
+        Assert.notNull(rsMapper, "rowMapper cannot be null");
+        this.rsMapper = rsMapper;
     }
 
     @Override
     public T extractData(ResultSet rs) throws SQLException, DataAccessException {
-        return rs.next() ? rowMapper.mapRow(new RSGetter(rs)) : null;
+        return rs.next() ? rsMapper.mapRow(new RSGetter(rs)) : null;
     }
+
 }

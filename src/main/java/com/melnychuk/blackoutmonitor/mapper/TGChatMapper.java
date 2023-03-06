@@ -1,18 +1,12 @@
-package com.melnychuk.blackoutmonitor.factory;
+package com.melnychuk.blackoutmonitor.mapper;
 
 import com.melnychuk.blackoutmonitor.dto.TGChatDTO;
-import com.melnychuk.blackoutmonitor.factory.mapper.TGChatMapper;
 import com.melnychuk.blackoutmonitor.model.TGChat;
 import com.melnychuk.util.jdbc.rs.RSGetter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-@AllArgsConstructor
-public class TGChatFactory extends BaseEntityFactory<TGChat, TGChatDTO> {
-
-    @Getter private final TGChatMapper mapper;
+@Mapper
+public abstract class TGChatMapper implements EntityMapper<TGChat, TGChatDTO> {
 
     @Override
     public TGChat mapRow(RSGetter rsGetter) {

@@ -2,7 +2,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 
 import com.melnychuk.blackoutmonitor.dao.DeviceSubscriptionDAO;
 import com.melnychuk.blackoutmonitor.dto.DeviceSubscriptionDTO;
-import com.melnychuk.blackoutmonitor.factory.DeviceSubscriptionFactory;
+import com.melnychuk.blackoutmonitor.mapper.DeviceSubscriptionMapper;
 import com.melnychuk.blackoutmonitor.model.DeviceSubscription;
 import com.melnychuk.blackoutmonitor.service.DeviceSubscriptionService;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.Set;
 public class DeviceSubscriptionServiceImpl extends BaseServiceImpl<DeviceSubscription, DeviceSubscriptionDTO> implements DeviceSubscriptionService {
 
     @Getter private final DeviceSubscriptionDAO dao;
-    @Getter private final DeviceSubscriptionFactory factory;
+    @Getter private final DeviceSubscriptionMapper mapper;
 
     @Override
     @Transactional(readOnly = true)

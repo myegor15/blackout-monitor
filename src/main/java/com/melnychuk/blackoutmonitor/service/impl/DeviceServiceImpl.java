@@ -3,7 +3,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 import com.melnychuk.blackoutmonitor.dao.DeviceDAO;
 import com.melnychuk.blackoutmonitor.dto.DeviceDTO;
 import com.melnychuk.blackoutmonitor.exception.AppServiceException;
-import com.melnychuk.blackoutmonitor.factory.DeviceFactory;
+import com.melnychuk.blackoutmonitor.mapper.DeviceMapper;
 import com.melnychuk.blackoutmonitor.model.Device;
 import com.melnychuk.blackoutmonitor.service.DeviceService;
 import lombok.AllArgsConstructor;
@@ -19,14 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class DeviceServiceImpl extends BaseServiceImpl<Device, DeviceDTO> implements DeviceService {
 
     @Getter private final DeviceDAO dao;
-    @Getter private final DeviceFactory factory;
+    @Getter private final DeviceMapper mapper;
 
     @Override
     @Transactional(readOnly = true)
     public DeviceDTO getBySerialNumber(String serialNumber) {
         try {
             Device md = dao.getBySerialNumber(serialNumber);
-            return factory.createDTO(md);
+            return mapper.toDTO(md);
         } catch (Exception e) {
             log.error("Exception in getBySerialNumber()", e);
             throw new AppServiceException(e);

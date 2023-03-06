@@ -2,7 +2,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 
 import com.melnychuk.blackoutmonitor.dao.BaseDAO;
 import com.melnychuk.blackoutmonitor.exception.AppServiceException;
-import com.melnychuk.blackoutmonitor.factory.EntityFactory;
+import com.melnychuk.blackoutmonitor.mapper.EntityMapper;
 import com.melnychuk.blackoutmonitor.service.BaseService;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +23,9 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
     @Transactional
     public DTO add(DTO dto) throws AppServiceException {
         try {
-            VO vo = this.getFactory().createVO(dto);
+            VO vo = this.getMapper().toVO(dto);
             vo = this.getDao().add(vo);
-            return this.getFactory().createDTO(vo); //TODO
+            return this.getMapper().toDTO(vo); //TODO
         } catch (Exception e) {
             log.error("Exception in add()", e);
             throw new AppServiceException(e);
@@ -44,7 +44,7 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
     @Transactional
     public void update(DTO dto) throws AppServiceException {
         try {
-            VO vo = this.getFactory().createVO(dto);
+            VO vo = this.getMapper().toVO(dto);
             this.getDao().update(vo);
         } catch (Exception e) {
             log.error("Exception in update()", e);
@@ -80,7 +80,7 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
     public DTO getById(Long id) throws AppServiceException {
         try {
             VO vo = this.getDao().getById(id);
-            return this.getFactory().createDTO(vo);
+            return this.getMapper().toDTO(vo);
         } catch (Exception e) {
             log.error("Exception in getById()", e);
             throw new AppServiceException(e);
@@ -92,7 +92,7 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
     public List<DTO> getList() throws AppServiceException {
         try {
             List<VO> voList = this.getDao().getList();
-            return this.getFactory().createDTOList(voList);
+            return this.getMapper().toDTOList(voList);
         } catch (Exception e) {
             log.error("Exception in getList()", e);
             throw new AppServiceException(e);
@@ -109,7 +109,7 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
                     .stream()
                     .collect(Collectors.toMap(
                             Map.Entry::getKey,
-                            e -> this.getFactory().createDTO(e.getValue())
+                            e -> this.getMapper().toDTO(e.getValue())
                     ));
         } catch (Exception e) {
             log.error("Exception in getMapByIds()", e);
@@ -118,5 +118,5 @@ public abstract class BaseServiceImpl<VO, DTO> implements BaseService<DTO> {
     }
     
     protected abstract BaseDAO<VO> getDao();
-    protected abstract EntityFactory<VO, DTO> getFactory();
+    protected abstract EntityMapper<VO, DTO> getMapper();
 }

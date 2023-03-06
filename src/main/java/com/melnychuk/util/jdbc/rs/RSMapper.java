@@ -1,6 +1,6 @@
 package com.melnychuk.util.jdbc.rs;
 
 @FunctionalInterface
-public interface RSRowMapper<T> {
+public interface RSMapper<T> {
     T mapRow(RSGetter rsGetter);
 }

@@ -1,6 +1,5 @@
 package com.melnychuk.util.jdbc.ps;
 
-import com.melnychuk.blackoutmonitor.exception.AppDAOException;
 import com.melnychuk.util.jdbc.PersistenceValue;
 
 import java.math.BigDecimal;
@@ -28,7 +27,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -42,7 +41,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -57,7 +56,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -71,22 +70,9 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
-
-//    public void setDate(LocalDate value) {
-//        try {
-//            if (value == null) {
-//                this.ps.setNull(this.i, Types.DATE);
-//            } else {
-//                Timestamp t = new Timestamp(value.getTime());
-//                this.ps.setTimestamp(this.i, t);
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public PSSetter setInteger(Integer value) {
         try {
@@ -98,7 +84,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -112,7 +98,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -126,7 +112,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
@@ -140,11 +126,11 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 
-    public PSSetter setEnum(PersistenceValue value) {
+    public <T extends Enum<T> & PersistenceValue> PSSetter setEnumValue(T value) {
         try {
             if (value == null) {
                 this.ps.setNull(this.i, Types.VARCHAR);
@@ -154,7 +140,7 @@ public class PSSetter {
             this.i++;
             return this;
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new PSException(e);
         }
     }
 }

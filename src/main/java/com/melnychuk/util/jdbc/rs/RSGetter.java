@@ -1,6 +1,5 @@
 package com.melnychuk.util.jdbc.rs;
 
-import com.melnychuk.blackoutmonitor.exception.AppDAOException;
 import com.melnychuk.util.jdbc.PersistenceValue;
 
 import java.math.BigDecimal;
@@ -25,7 +24,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -38,7 +37,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -51,7 +50,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -64,7 +63,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -77,7 +76,7 @@ public class RSGetter {
                 return timestamp.toInstant();
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -90,7 +89,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -103,7 +102,7 @@ public class RSGetter {
                 return result;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
@@ -116,11 +115,11 @@ public class RSGetter {
                 return result.charAt(0);
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 
-    public <T extends PersistenceValue> T getEnum(String key, T[] values) {
+    public <T extends Enum<T> & PersistenceValue> T getEnumValue(String key, T[] values) {
         try {
             String result = this.rs.getString(key);
             if (this.rs.wasNull()) {
@@ -134,7 +133,7 @@ public class RSGetter {
                 return null;
             }
         } catch (Exception e) {
-            throw new AppDAOException(e);
+            throw new RSException(e);
         }
     }
 

@@ -19,18 +19,24 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.0.2'
 	implementation 'org.postgresql:postgresql:42.5.3'
 
-	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-
 	implementation 'org.telegram:telegrambots:6.3.0'
 	implementation 'org.telegram:telegrambots-spring-boot-starter:6.3.0'
 
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+compileJava {
+	options.compilerArgs += [
+			'-Amapstruct.defaultComponentModel=spring'
+	]
 }

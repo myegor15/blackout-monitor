@@ -2,7 +2,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 
 import com.melnychuk.blackoutmonitor.dao.TGChatDAO;
 import com.melnychuk.blackoutmonitor.dto.TGChatDTO;
-import com.melnychuk.blackoutmonitor.factory.TGChatFactory;
+import com.melnychuk.blackoutmonitor.mapper.TGChatMapper;
 import com.melnychuk.blackoutmonitor.model.TGChat;
 import com.melnychuk.blackoutmonitor.service.TGChatService;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.Set;
 public class TGChatServiceImpl extends BaseServiceImpl<TGChat, TGChatDTO> implements TGChatService {
 
     @Getter private final TGChatDAO dao;
-    @Getter private final TGChatFactory factory;
+    @Getter private final TGChatMapper mapper;
 
     @Override
     @Transactional(readOnly = true)
