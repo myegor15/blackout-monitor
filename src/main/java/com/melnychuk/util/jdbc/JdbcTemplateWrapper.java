@@ -3,6 +3,7 @@ package com.melnychuk.util.jdbc;
 import com.melnychuk.util.jdbc.ps.PSSetterExecutor;
 import com.melnychuk.util.jdbc.rs.RSMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class JdbcTemplateWrapper {
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcTemplateWrapper(JdbcTemplate jdbcTemplate) {
+        Assert.notNull(jdbcTemplate, "jdbcTemplate cannot be null");
         this.jdbcTemplate = jdbcTemplate;
     }
 

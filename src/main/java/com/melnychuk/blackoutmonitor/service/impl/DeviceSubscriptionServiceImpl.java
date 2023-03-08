@@ -2,6 +2,7 @@ package com.melnychuk.blackoutmonitor.service.impl;
 
 import com.melnychuk.blackoutmonitor.dao.DeviceSubscriptionDAO;
 import com.melnychuk.blackoutmonitor.dto.DeviceSubscriptionDTO;
+import com.melnychuk.blackoutmonitor.exception.AppServiceException;
 import com.melnychuk.blackoutmonitor.mapper.DeviceSubscriptionMapper;
 import com.melnychuk.blackoutmonitor.model.DeviceSubscription;
 import com.melnychuk.blackoutmonitor.service.DeviceSubscriptionService;
@@ -24,8 +25,13 @@ public class DeviceSubscriptionServiceImpl extends BaseServiceImpl<DeviceSubscri
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Long> getTGChatIdSetByDeviceId(Long deviceId) {
-        return null;
+    public Set<Long> getTGChatIdsByDeviceId(Long deviceId) {
+        try {
+            return dao.getTGChatIdsByDeviceId(deviceId);
+        } catch (Exception e) {
+            log.error("Exception in getTGChatIdsByDeviceId()", e);
+            throw new AppServiceException(e);
+        }
     }
 
 }

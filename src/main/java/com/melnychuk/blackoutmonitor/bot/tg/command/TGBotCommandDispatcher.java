@@ -12,7 +12,7 @@ public class TGBotCommandDispatcher {
     private List<TGBotCommand> commandList;
 
     public TGBotCommandDispatcher(List<TGBotCommand> commands) {
-        Assert.notEmpty(commands, "Commands cannot be null or empty");
+        Assert.notEmpty(commands, "commands cannot be null or empty");
         this.commandList = commands
                 .stream()
                 .sorted(Comparator
@@ -22,8 +22,8 @@ public class TGBotCommandDispatcher {
     }
 
     public boolean dispatch(UserRequest userRequest) {
-        for (TGBotCommand userRequestHandler : commandList) {
-            if(userRequestHandler.isApplicable(userRequest)){
+        for (TGBotCommand userRequestHandler : this.commandList) {
+            if (userRequestHandler.isApplicable(userRequest)) {
                 userRequestHandler.handle(userRequest);
                 return true;
             }

@@ -8,6 +8,7 @@ import com.melnychuk.blackoutmonitor.service.DeviceService;
 import com.melnychuk.blackoutmonitor.service.DeviceSubscriptionService;
 import com.melnychuk.blackoutmonitor.service.TGChatService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -16,7 +17,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor_ = {@Autowired})
 public class DeviceSessionManager {
 
     private final TGChatService tgChatService;
@@ -32,8 +33,8 @@ public class DeviceSessionManager {
         Objects.requireNonNull(serialNumber, "serialNumber cannot be null");
         DeviceDTO device = Optional.ofNullable(deviceService.getBySerialNumber(serialNumber))
                 .orElseThrow(() -> new AppServiceException("Device does not exist: serialNumber=" + serialNumber));
-        Set<Long> tgChatIds = deviceSubscriptionService.getTGChatIdSetByDeviceId(device.getId());
-        Set<Long> chatRefIds = tgChatService.getRefIdSetByTGChatIdSet(tgChatIds);
+        Set<Long> tgChatIds = deviceSubscriptionService.getTGChatIdsByDeviceId(device.getId());
+        Set<Long> chatRefIds = tgChatService.getRefIdsByIds(tgChatIds);
         DeviceSession deviceSession = DeviceSession.builder()
                 .webSocketSession(wsSession)
                 .device(device)
