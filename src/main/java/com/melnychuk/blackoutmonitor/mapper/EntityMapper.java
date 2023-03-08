@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface EntityMapper<M, DTO> extends RSMapper<M> {
 
-    M toVO(DTO dto);
-    DTO toDTO(M m);
+    M toModel(DTO dto);
+    DTO toDTO(M model);
 
-    void updateDTO(M m, @MappingTarget DTO dto);
+    void updateDTO(M model, @MappingTarget DTO dto);
 
-    List<DTO> toDTOList(List<M> mList);
-    List<M> toVOList(List<DTO> dtoList);
+    List<M> toModelList(List<DTO> dtoList);
+    List<DTO> toDTOList(List<M> modelList);
 
 }
