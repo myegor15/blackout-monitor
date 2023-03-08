@@ -2,6 +2,10 @@ package com.melnychuk.util.jdbc;
 
 public class JDBCException extends RuntimeException {
 
+    public JDBCException(String message) {
+        super(message);
+    }
+
     public JDBCException(Throwable cause) {
         super(cause);
     }

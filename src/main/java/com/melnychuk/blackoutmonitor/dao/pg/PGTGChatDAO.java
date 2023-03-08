@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Repository
 public class PGTGChatDAO extends PGBaseDAO<TGChat> implements TGChatDAO {
@@ -21,10 +19,9 @@ public class PGTGChatDAO extends PGBaseDAO<TGChat> implements TGChatDAO {
 
     @Override
     public Set<Long> getRefIdsByIds(Set<Long> chatIdSet) {
-        String collect = Stream.generate(() -> "?").limit(chatIdSet.size()).collect(Collectors.joining("?"));
         return jdbcTemplateWrapper.selectSet(
-                "SELECT ref_id FROM tg_chat WHERE tg_chat_id IN (" + collect + ")",
-                psSetter -> chatIdSet.forEach(psSetter::setLong),
+                "SELECT ref_id FROM tg_chat WHERE tg_chat_id IN (" + generatePSMarks(chatIdSet.size()) + ")",
+                psSetter -> psSetter.setLongCollection(chatIdSet),
                 rsGetter -> rsGetter.getLong("ref_id")
         );
     }

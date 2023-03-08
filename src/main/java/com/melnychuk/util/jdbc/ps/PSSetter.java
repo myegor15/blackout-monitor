@@ -1,12 +1,15 @@
 package com.melnychuk.util.jdbc.ps;
 
 import com.melnychuk.util.jdbc.PersistenceValue;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.function.Consumer;
 
 public class PSSetter {
 
@@ -142,5 +145,26 @@ public class PSSetter {
         } catch (Exception e) {
             throw new PSException(e);
         }
+    }
+
+    public PSSetter setLongCollection(Collection<Long> values) {
+        return setCollection(values, this::setLong);
+    }
+
+    public PSSetter setIntegerCollection(Collection<Integer> values) {
+        return setCollection(values, this::setInteger);
+    }
+
+    public PSSetter setStringCollection(Collection<String> values) {
+        return setCollection(values, this::setString);
+    }
+
+    public <T> PSSetter setCollection(Collection<T> values, Consumer<T> setConsumer) {
+        if (CollectionUtils.isEmpty(values)) {
+            throw new PSException("Collection cannot be null or empty.");
+        }
+
+        values.forEach(setConsumer);
+        return this;
     }
 }

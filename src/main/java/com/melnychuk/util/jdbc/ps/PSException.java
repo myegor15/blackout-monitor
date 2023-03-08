@@ -4,6 +4,10 @@ import com.melnychuk.util.jdbc.JDBCException;
 
 public class PSException extends JDBCException {
 
+    public PSException(String message) {
+        super(message);
+    }
+
     public PSException(Throwable cause) {
         super(cause);
     }
