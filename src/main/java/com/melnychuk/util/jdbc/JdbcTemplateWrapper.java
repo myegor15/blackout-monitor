@@ -2,9 +2,13 @@ package com.melnychuk.util.jdbc;
 
 import com.melnychuk.util.jdbc.ps.PSSetterExecutor;
 import com.melnychuk.util.jdbc.rs.RSMapper;
+import com.melnychuk.util.jdbc.rs.extractor.RSCollectionExtractor;
+import com.melnychuk.util.jdbc.rs.extractor.RSMapExtractor;
+import com.melnychuk.util.jdbc.rs.extractor.RSMapOfCollectionsExtractor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -95,13 +99,11 @@ public class JdbcTemplateWrapper {
     }
 
     public <T> List<T> selectList(String sql, PSSetterExecutor psSetterExecutor, RSMapper<T> mapper) {
-        try {
-            return this.jdbcTemplate.query(sql, psSetterExecutor, listExtractor(mapper));
-        } catch (JDBCException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new JDBCException(e);
-        }
+        return selectList(sql, psSetterExecutor, listExtractor(mapper));
+    }
+
+    public <T> List<T> selectList(String sql, PSSetterExecutor psSetterExecutor, RSCollectionExtractor<T, List<T>> extractor) {
+        return selectCollection(sql, psSetterExecutor, extractor);
     }
 
     public <T> Set<T> selectSet(String sql, RSMapper<T> mapper) {
@@ -109,8 +111,16 @@ public class JdbcTemplateWrapper {
     }
 
     public <T> Set<T> selectSet(String sql, PSSetterExecutor psSetterExecutor, RSMapper<T> mapper) {
+        return selectSet(sql, psSetterExecutor, setExtractor(mapper));
+    }
+
+    public <T> Set<T> selectSet(String sql, PSSetterExecutor psSetterExecutor, RSCollectionExtractor<T, Set<T>> extractor) {
+        return selectCollection(sql, psSetterExecutor, extractor);
+    }
+
+    public <T, C extends Collection<T>> C selectCollection(String sql, PSSetterExecutor psSetterExecutor, RSCollectionExtractor<T, C> extractor) {
         try {
-            return this.jdbcTemplate.query(sql, psSetterExecutor, setExtractor(mapper));
+            return this.jdbcTemplate.query(sql, psSetterExecutor, extractor);
         } catch (JDBCException e) {
             throw e;
         } catch (Exception e) {
@@ -123,8 +133,12 @@ public class JdbcTemplateWrapper {
     }
 
     public <K, T> Map<K, T> selectMap(String sql, PSSetterExecutor psSetterExecutor, RSMapper<K> keyMapper, RSMapper<T> valueMapper) {
+        return selectMap(sql, psSetterExecutor, mapExtractor(keyMapper, valueMapper));
+    }
+
+    public <K, T> Map<K, T> selectMap(String sql, PSSetterExecutor psSetterExecutor, RSMapExtractor<K, T> extractor) {
         try {
-            return this.jdbcTemplate.query(sql, psSetterExecutor, mapExtractor(keyMapper, valueMapper));
+            return this.jdbcTemplate.query(sql, psSetterExecutor, extractor);
         } catch (JDBCException e) {
             throw e;
         } catch (Exception e) {
@@ -137,13 +151,11 @@ public class JdbcTemplateWrapper {
     }
 
     public <K, T> Map<K, List<T>> selectMapOfLists(String sql, PSSetterExecutor psSetterExecutor, RSMapper<K> keyMapper, RSMapper<T> valueMapper) {
-        try {
-            return this.jdbcTemplate.query(sql, psSetterExecutor, mapOfListsExtractor(keyMapper, valueMapper));
-        } catch (JDBCException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new JDBCException(e);
-        }
+        return selectMapOfLists(sql, psSetterExecutor, mapOfListsExtractor(keyMapper, valueMapper));
+    }
+
+    public <K, T> Map<K, List<T>> selectMapOfLists(String sql, PSSetterExecutor psSetterExecutor, RSMapOfCollectionsExtractor<K, T, List<T>> extractor) {
+        return selectMapOfCollections(sql, psSetterExecutor, extractor);
     }
 
     public <K, T> Map<K, Set<T>> selectMapOfSets(String sql, RSMapper<K> keyMapper, RSMapper<T> valueMapper) {
@@ -151,8 +163,16 @@ public class JdbcTemplateWrapper {
     }
 
     public <K, T> Map<K, Set<T>> selectMapOfSets(String sql, PSSetterExecutor psSetterExecutor, RSMapper<K> keyMapper, RSMapper<T> valueMapper) {
+        return selectMapOfSets(sql, psSetterExecutor, mapOfSetsExtractor(keyMapper, valueMapper));
+    }
+
+    public <K, T> Map<K, Set<T>> selectMapOfSets(String sql, PSSetterExecutor psSetterExecutor, RSMapOfCollectionsExtractor<K, T, Set<T>> extractor) {
+        return selectMapOfCollections(sql, psSetterExecutor, extractor);
+    }
+
+    public <K, T, V extends Collection<T>> Map<K, V> selectMapOfCollections(String sql, PSSetterExecutor psSetterExecutor, RSMapOfCollectionsExtractor<K, T, V> extractor) {
         try {
-            return this.jdbcTemplate.query(sql, psSetterExecutor, mapOfSetsExtractor(keyMapper, valueMapper));
+            return this.jdbcTemplate.query(sql, psSetterExecutor, extractor);
         } catch (JDBCException e) {
             throw e;
         } catch (Exception e) {
