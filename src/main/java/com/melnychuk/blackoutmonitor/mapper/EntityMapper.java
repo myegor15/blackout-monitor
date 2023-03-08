@@ -5,14 +5,14 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-public interface EntityMapper<VO, DTO> extends RSMapper<VO> {
+public interface EntityMapper<M, DTO> extends RSMapper<M> {
 
-    VO toVO(DTO dto);
-    DTO toDTO(VO vo);
+    M toVO(DTO dto);
+    DTO toDTO(M m);
 
-    void updateDTO(VO vo, @MappingTarget DTO dto);
+    void updateDTO(M m, @MappingTarget DTO dto);
 
-    List<DTO> toDTOList(List<VO> voList);
-    List<VO> toVOList(List<DTO> dtoList);
+    List<DTO> toDTOList(List<M> mList);
+    List<M> toVOList(List<DTO> dtoList);
 
 }

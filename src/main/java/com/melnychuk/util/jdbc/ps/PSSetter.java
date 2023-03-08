@@ -1,6 +1,6 @@
 package com.melnychuk.util.jdbc.ps;
 
-import com.melnychuk.util.jdbc.PersistenceValue;
+import com.melnychuk.util.jdbc.PersistentValue;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -133,7 +133,7 @@ public class PSSetter {
         }
     }
 
-    public <T extends Enum<T> & PersistenceValue> PSSetter setEnumValue(T value) {
+    public <T extends Enum<T> & PersistentValue> PSSetter setEnumValue(T value) {
         try {
             if (value == null) {
                 this.ps.setNull(this.i, Types.VARCHAR);

@@ -1,6 +1,6 @@
 package com.melnychuk.util.jdbc.rs;
 
-import com.melnychuk.util.jdbc.PersistenceValue;
+import com.melnychuk.util.jdbc.PersistentValue;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -119,7 +119,7 @@ public class RSGetter {
         }
     }
 
-    public <T extends Enum<T> & PersistenceValue> T getEnumValue(String key, T[] values) {
+    public <T extends Enum<T> & PersistentValue> T getEnumValue(String key, T[] values) {
         try {
             String result = this.rs.getString(key);
             if (this.rs.wasNull()) {
