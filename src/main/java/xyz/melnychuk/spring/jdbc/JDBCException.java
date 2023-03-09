@@ -1,4 +1,4 @@
-package xyz.melnychuk.spring.util.jdbc;
+package xyz.melnychuk.spring.jdbc;
 
 public class JDBCException extends RuntimeException {
 

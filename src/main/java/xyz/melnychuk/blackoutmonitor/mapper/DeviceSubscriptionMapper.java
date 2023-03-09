@@ -2,7 +2,7 @@ package xyz.melnychuk.blackoutmonitor.mapper;
 
 import xyz.melnychuk.blackoutmonitor.dto.DeviceSubscriptionDTO;
 import xyz.melnychuk.blackoutmonitor.model.DeviceSubscription;
-import xyz.melnychuk.spring.util.jdbc.rs.RSGetter;
+import xyz.melnychuk.spring.jdbc.rs.RSGetter;
 import org.mapstruct.Mapper;
 
 @Mapper

@@ -1,13 +1,13 @@
-package xyz.melnychuk.spring.util.jdbc;
+package xyz.melnychuk.spring.jdbc;
 
-import xyz.melnychuk.spring.util.jdbc.ps.PSSetterExecutor;
-import xyz.melnychuk.spring.util.jdbc.rs.extractor.RSCollectionExtractor;
-import xyz.melnychuk.spring.util.jdbc.rs.RSMapper;
-import xyz.melnychuk.spring.util.jdbc.rs.extractor.RSMapExtractor;
-import xyz.melnychuk.spring.util.jdbc.rs.extractor.RSMapOfCollectionsExtractor;
+import xyz.melnychuk.spring.jdbc.ps.PSSetterExecutor;
+import xyz.melnychuk.spring.jdbc.rs.extractor.RSCollectionExtractor;
+import xyz.melnychuk.spring.jdbc.rs.RSMapper;
+import xyz.melnychuk.spring.jdbc.rs.extractor.RSMapExtractor;
+import xyz.melnychuk.spring.jdbc.rs.extractor.RSMapOfCollectionsExtractor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
-import xyz.melnychuk.spring.util.jdbc.rs.extractor.RSExtractors;
+import xyz.melnychuk.spring.jdbc.rs.extractor.RSExtractors;
 
 import java.util.Collection;
 import java.util.List;

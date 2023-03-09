@@ -1,6 +1,6 @@
 package xyz.melnychuk.blackoutmonitor.model.enums;
 
-import xyz.melnychuk.spring.util.jdbc.PersistentValue;
+import xyz.melnychuk.spring.jdbc.PersistentValue;
 
 public enum DeviceStatus implements PersistentValue {
 

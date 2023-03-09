@@ -1,6 +1,6 @@
-package xyz.melnychuk.spring.util.jdbc.ps;
+package xyz.melnychuk.spring.jdbc.ps;
 
-import xyz.melnychuk.spring.util.jdbc.PersistentValue;
+import xyz.melnychuk.spring.jdbc.PersistentValue;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;

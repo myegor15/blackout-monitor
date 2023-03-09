@@ -1,4 +1,4 @@
-package xyz.melnychuk.spring.util.jdbc.ps;
+package xyz.melnychuk.spring.jdbc.ps;
 
 import org.springframework.jdbc.core.PreparedStatementSetter;
 

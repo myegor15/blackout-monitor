@@ -1,6 +1,6 @@
-package xyz.melnychuk.spring.util.jdbc.rs;
+package xyz.melnychuk.spring.jdbc.rs;
 
-import xyz.melnychuk.spring.util.jdbc.JDBCException;
+import xyz.melnychuk.spring.jdbc.JDBCException;
 
 public class RSException extends JDBCException {
 

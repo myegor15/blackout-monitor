@@ -3,7 +3,7 @@ package xyz.melnychuk.blackoutmonitor.dao.pg;
 import xyz.melnychuk.blackoutmonitor.dao.DeviceDAO;
 import xyz.melnychuk.blackoutmonitor.mapper.DeviceMapper;
 import xyz.melnychuk.blackoutmonitor.model.Device;
-import xyz.melnychuk.spring.util.jdbc.JdbcTemplateWrapper;
+import xyz.melnychuk.spring.jdbc.JdbcTemplateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

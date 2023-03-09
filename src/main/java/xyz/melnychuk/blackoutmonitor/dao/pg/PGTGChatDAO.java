@@ -3,7 +3,7 @@ package xyz.melnychuk.blackoutmonitor.dao.pg;
 import xyz.melnychuk.blackoutmonitor.dao.TGChatDAO;
 import xyz.melnychuk.blackoutmonitor.mapper.TGChatMapper;
 import xyz.melnychuk.blackoutmonitor.model.TGChat;
-import xyz.melnychuk.spring.util.jdbc.JdbcTemplateWrapper;
+import xyz.melnychuk.spring.jdbc.JdbcTemplateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

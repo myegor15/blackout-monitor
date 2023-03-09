@@ -2,8 +2,8 @@ package xyz.melnychuk.blackoutmonitor.dao.pg;
 
 import xyz.melnychuk.blackoutmonitor.dao.BaseDAO;
 import xyz.melnychuk.blackoutmonitor.exception.AppDAOException;
-import xyz.melnychuk.spring.util.jdbc.JdbcTemplateWrapper;
-import xyz.melnychuk.spring.util.jdbc.rs.RSMapper;
+import xyz.melnychuk.spring.jdbc.JdbcTemplateWrapper;
+import xyz.melnychuk.spring.jdbc.rs.RSMapper;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;

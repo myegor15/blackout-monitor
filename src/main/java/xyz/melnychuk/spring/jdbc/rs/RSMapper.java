@@ -1,4 +1,4 @@
-package xyz.melnychuk.spring.util.jdbc.rs;
+package xyz.melnychuk.spring.jdbc.rs;
 
 @FunctionalInterface
 public interface RSMapper<T> {

@@ -1,6 +1,6 @@
-package xyz.melnychuk.spring.util.jdbc.ps;
+package xyz.melnychuk.spring.jdbc.ps;
 
-import xyz.melnychuk.spring.util.jdbc.JDBCException;
+import xyz.melnychuk.spring.jdbc.JDBCException;
 
 public class PSException extends JDBCException {
 

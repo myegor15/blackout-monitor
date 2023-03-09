@@ -1,6 +1,6 @@
 package xyz.melnychuk.blackoutmonitor.mapper;
 
-import xyz.melnychuk.spring.util.jdbc.rs.RSMapper;
+import xyz.melnychuk.spring.jdbc.rs.RSMapper;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.MappingTarget;
 

@@ -1,6 +1,6 @@
-package xyz.melnychuk.spring.util.jdbc.rs.extractor;
+package xyz.melnychuk.spring.jdbc.rs.extractor;
 
-import xyz.melnychuk.spring.util.jdbc.rs.RSMapper;
+import xyz.melnychuk.spring.jdbc.rs.RSMapper;
 
 import java.util.*;
 

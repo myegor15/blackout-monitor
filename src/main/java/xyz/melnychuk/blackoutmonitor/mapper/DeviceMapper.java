@@ -3,7 +3,7 @@ package xyz.melnychuk.blackoutmonitor.mapper;
 import xyz.melnychuk.blackoutmonitor.dto.DeviceDTO;
 import xyz.melnychuk.blackoutmonitor.model.Device;
 import xyz.melnychuk.blackoutmonitor.model.enums.DeviceStatus;
-import xyz.melnychuk.spring.util.jdbc.rs.RSGetter;
+import xyz.melnychuk.spring.jdbc.rs.RSGetter;
 import org.mapstruct.Mapper;
 
 @Mapper
