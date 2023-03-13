@@ -1,12 +1,13 @@
-package xyz.melnychuk.blackoutmonitor.bot.tg.command;
+package xyz.melnychuk.telegram.bot.handler.command;
 
-import xyz.melnychuk.blackoutmonitor.bot.tg.UserRequest;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import xyz.melnychuk.telegram.bot.UserRequest;
+import xyz.melnychuk.telegram.bot.handler.TGBotUpdateHandler;
 
-public abstract class TGBotCommand {
+public abstract class TGBotCommand implements TGBotUpdateHandler {
 
     public abstract boolean isApplicable(UserRequest request);
-    public abstract void handle(UserRequest dispatchRequest);
+
     public abstract boolean isGlobal();
 
     public boolean isCommand(Update update, String command) {

@@ -1,16 +1,10 @@
 package xyz.melnychuk.blackoutmonitor.props;
 
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@Component
-@Getter
-public class TGBotProperties {
-    @Value("${telegram.webhook-path}")
-    private String webhookPath;
-    @Value("${telegram.bot-name}")
-    private String botName;
-    @Value("${telegram.bot-token}")
-    private String botToken;
+@ConfigurationProperties(prefix = "telegram.bot")
+public record TGBotProperties(@JsonProperty("token") String token,
+                              @JsonProperty("name") String name,
+                              @JsonProperty("webhook-path") String webhookPath) {
 }

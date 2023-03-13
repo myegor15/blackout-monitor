@@ -6,3 +6,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/blackout_monitor
     username: postgres
     password: postgres
+
+telegram:
+  bot:
+    enable:
+    token:
+    name:
+    webhook-path:
